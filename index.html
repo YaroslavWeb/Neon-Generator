@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Generator</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./libs/font-awsome.min.css">
+    <link rel="stylesheet" href="./libs/codemirror/codemirror.css">
+    <link rel="stylesheet" href="./libs/codemirror/theme/darcula.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light rounded">
+            <a class="navbar-brand font-weight-light text-left">Neon Light Generator for CSS</a>
+            <div class="navbar-links">
+                <a href="https://www.instagram.com/yaroslav.tatarinov.dev/"><i class="fab fa-instagram-square"></i></a>
+                <a href="https://github.com/YaroslavWeb"><i class="fab fa-github-square"></i></a>
+            </div>
+
+        </nav>
+        <div class="row">
+            <div class="col-md-12 col-lg-6 mt-2">
+                <h3 class="font-weight-light text-light">Options</h3>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <h4 class="text-light text-center"><a href="https://www.w3schools.com/charsets/ref_emoji.asp">Emoji</a></h4>
+                                <div class="row">
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#129409;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#9940;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)"type="button" class="btn btn-light w-100 p-1 m-1">&#9996;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#10004;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128169;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)"type="button" class="btn btn-light w-100 p-1 m-1">&#10084;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128514;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128519;</button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128525;</button></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="text-light text-center"><a href="https://fontawesome.com">FontAwsome</a></h4>
+                                <div class="row">
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-user-tie"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-sign-in-alt"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-battery-quarter"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="far fa-user-circle"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-envelope-square"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-phone-square-alt"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-html5"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-skype"></i></button></div>
+                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-github"></i></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 input-group flex-nowrap">
+                        <input id="input-value-preview" type="text" class="form-control" value='CALL ME <i class="fab fa-skype"></i>'>
+                        <div class="input-group-prepend">
+                            <input id="input-color-preview" class="jscolor {onFineChange:'setPreviewColor(this)'}"value="00A3E0">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-group mt-3">
+                            <select id="select-family-preview" class="custom-select" id="inputGroupSelect01">
+                                <option selected value="Bahnschrift">Bahnschrift</option>
+                                <option value="Consolas">Consolas</option>
+                                <option value="Cursive">Cursive</option>
+                                <option value="Garamond">Garamond</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect01">Font Family</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <form>
+                            <div class="form-group">
+                                <label for="formControlRange" class="text-light">Font size</label>
+                                <input type="range" class="form-control-range"  min="18" max="100" step="1" value="81" id="input-size-preview">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <form>
+                            <div class="form-group">
+                                <label for="formControlRange" class="text-light">Blur</label>
+                                <input type="range" class="form-control-range"  min="0" max="30" step="1" value="0" id="input-blur-preview">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <form>
+                            <div class="form-group">
+                                <label for="formControlRange" class="text-light">Delay</label>
+                                <input type="range" class="form-control-range"  min="1" max="10" step="0.5" value="2" id="input-delay-preview">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 mt-2">
+                <h3 class="font-weight-light text-light">Preview</h3>
+                <div id="text-preview" class="text-center neon"></div>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <div class="row  mb-5">
+            <div class="col-md-12 col-lg-6 mt-2">
+                <h3 class="font-weight-light text-light">CSS 
+                    <button type="button" class="btn btn-light p-1 m-1">
+                        <i class="fas fa-copy copy-css p-2"></i>
+                    </button>
+                </h3>
+                <div id="code-css-preview"></div>
+            </div>
+            <div class="col-md-12 col-lg-6 mt-2">
+                <h3 class="font-weight-light text-light">HTML
+                    <button type="button" class="btn btn-light p-1 m-1">
+                        <i class="fas fa-copy copy-html p-2"></i>
+                    </button>
+                </h3>
+                <div id="code-html-preview"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<style id="animationKeyframes"></style>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="./libs/codemirror/codemirror.js"></script>
+<script src="./libs/codemirror/modes/css.js"></script>
+<script src="./libs/codemirror/modes/xml.js"></script>
+<script src="./libs/jscolor.js"></script>
+<script src="./script.js"></script>
+
+</html>
