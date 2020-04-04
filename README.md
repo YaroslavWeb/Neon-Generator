@@ -1,6 +1,6 @@
 <h1>Neon Generator for CSS </h1>
 <br>
-<hr></hr>
+<hr>
    &#9749; Libraries:<br>
 <table>
    <tr><td>Bootstrap</td></tr>
