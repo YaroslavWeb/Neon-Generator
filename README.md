@@ -1,4 +1,3 @@
-# Neon-Generator
 <h1>Neon Generator for CSS </h1>
 <br>
 <hr></hr>
