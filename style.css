@@ -1,13 +1,28 @@
 body{
     background: #313335;
+  }
+.navbar-brand{
+    font-size: 2rem;
 }
 .navbar-links{
     font-size: 3rem;
 }
-.navbar-brand{
-    font-size: 2.5rem;
+@media (max-width: 760px) {
+  .navbar-brand{
+    font-size: 1.5rem;
+  }
+  .navbar-links{
+    font-size: 2rem;
+  }
 }
-
+@media (max-width: 350px) {
+  .navbar-brand{
+    font-size: 1rem;
+  }
+  .navbar-links{
+    font-size: 1.5rem;
+  }
+}
 
 .fa-copy{
     font-size: 1.2rem;
