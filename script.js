@@ -13,19 +13,13 @@ let options = {
     from {
         text-shadow: 
           0 0 ${blur+10}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+20}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur+40}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+80}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+90}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur+100}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
       }
       to {
         text-shadow: 
           0 0 ${blur+5}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+10}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur+20}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+40}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur+45}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur+60}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
       }
 }`
@@ -184,8 +178,18 @@ let addIcon = (icon) =>{
 </div>`)
 }
 
-// Copy code by button
+// Clear input value preview
+$('#clear-value-preview').click(()=>{
+options.value = ''
+$('#input-value-preview').val(options.value)
+$('#text-preview').html(options.value)
+HTMLcode.setValue(
+`<div class="neon">
+    ${options.value}
+</div>`)
+})
 
+// Copy code by button
 let copyToClipboard = (text)=>{
     let textarea = document.createElement("textarea");
     document.body.appendChild(textarea);

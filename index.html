@@ -62,9 +62,14 @@
                     </div>
                     <div class="col-12 input-group flex-nowrap">
                         <input id="input-value-preview" type="text" class="form-control" value='CALL ME <i class="fab fa-skype"></i>'>
-                        <div class="input-group-prepend">
-                            <input id="input-color-preview" class="jscolor {onFineChange:'setPreviewColor(this)'}"value="00A3E0">
+                        <div class="input-group-append">
+                            <button type="button" id="clear-value-preview" class="input-group-text btn btn-light pl-2 pr-2">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <input id="input-color-preview" class="w-100 jscolor {onFineChange:'setPreviewColor(this)'}"value="00A3E0">
                     </div>
                     <div class="col-8">
                         <div class="input-group mt-3">
@@ -99,7 +104,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="formControlRange" class="text-light">Delay</label>
-                                <input type="range" class="form-control-range"  min="1" max="10" step="0.5" value="2" id="input-delay-preview">
+                                <input type="range" class="form-control-range"  min="1" max="10" step="0.5" value="5" id="input-delay-preview">
                             </div>
                         </form>
                     </div>
