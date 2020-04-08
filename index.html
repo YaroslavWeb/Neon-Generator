@@ -1,72 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Generator</title>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./libs/font-awsome.min.css">
-    <link rel="stylesheet" href="./libs/codemirror/codemirror.css">
-    <link rel="stylesheet" href="./libs/codemirror/theme/darcula.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="container">
-        <nav class="navbar navbar-light bg-light rounded">
-            <a class="navbar-brand font-weight-light text-left">Neon Light Generator for CSS</a>
-            <div class="navbar-links">
-                <a href="https://www.instagram.com/yaroslav.tatarinov.dev/"><i class="fab fa-instagram-square"></i></a>
-                <a href="https://github.com/YaroslavWeb"><i class="fab fa-github-square"></i></a>
-                <a href="https://www.youtube.com/channel/UCh830dX6CFB4qBHUKG7rZyA?view_as=subscriber"><i class="fab fa-youtube-square"></i></a>
-            </div>
-
-        </nav>
-        <div class="row">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Neon Generator</title>
+      <link rel="shortcut icon" href="./favicon.ico" type="image/png">
+      <link rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
+         integrity="sha256-m/h/cUDAhf6/iBRixTbuc8+Rg2cIETQtPcH9D3p2Kg0=" crossorigin="anonymous">
+      <link rel="stylesheet" href="./libs/font-awsome.min.css">
+      <link rel="stylesheet" href="./libs/codemirror/codemirror.css">
+      <link rel="stylesheet" href="./libs/codemirror/theme/darcula.css">
+      <link rel="stylesheet" href="./libs/colorpicker/css/bootstrap-colorpicker.css">
+      <link rel="stylesheet" href="./style.css">
+   </head>
+   <body>
+      <div class="jumbotron jumbotron-fluid">
+         <div class="container">
+            <h1 class="display-4">Neon Light Generator for CSS</h1>
+         </div>
+      </div>
+      <a href="https://github.com/YaroslavWeb/Neon-Generator" class="github-corner">
+         <svg width="80" height="80" viewBox="0 0 250 250"
+            style="fill:#313131; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path
+               d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+               fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path
+               d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+               fill="currentColor" class="octo-body"></path>
+         </svg>
+      </a>
+      <div class="container">
+         <div class="row">
             <div class="col-md-12 col-lg-6 mt-2">
-                <h3 class="font-weight-light text-light">Options</h3>
-                <div class="row">
-                    <div class="col-12 mb-4">
+               <div class="card mb-4">
+                  <div class="card-header">
+                     <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link active" id="emoji-tab" data-toggle="tab" href="#emoji" role="tab"
+                              aria-controls="emoji" aria-selected="true">Emoji</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" id="fa-tab" data-toggle="tab" href="#fa" role="tab"
+                              aria-controls="fa" aria-selected="false">FontAwsome</a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="card-body">
+                     <div class="card-text">
                         <div class="row">
-                            <div class="col-6">
-                                <h4 class="text-light text-center"><a href="https://www.w3schools.com/charsets/ref_emoji.asp">Emoji</a></h4>
-                                <div class="row">
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#129409;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#9940;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)"type="button" class="btn btn-light w-100 p-1 m-1">&#9996;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#10004;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128169;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)"type="button" class="btn btn-light w-100 p-1 m-1">&#10084;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128514;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128519;</button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1">&#128525;</button></div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <h4 class="text-light text-center"><a href="https://fontawesome.com">FontAwsome</a></h4>
-                                <div class="row">
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-user-tie"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-sign-in-alt"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-battery-quarter"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="far fa-user-circle"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-envelope-square"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fas fa-phone-square-alt"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-html5"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-skype"></i></button></div>
-                                    <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button" class="btn btn-light w-100 p-1 m-1"><i class="fab fa-github"></i></button></div>
-                                </div>
-                            </div>
+                           <div class="col-6">
+                              <div class="row">
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#129409;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#9940;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#9996;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#10004;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#128169;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#10084;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#128514;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#128519;</button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1">&#128525;</button></div>
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="row">
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fas fa-user-tie"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fas fa-sign-in-alt"></i></button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fas fa-battery-quarter"></i></button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="far fa-user-circle"></i></button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fas fa-envelope-square"></i></button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fas fa-phone-square-alt"></i></button></div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fab fa-html5"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fab fa-skype"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i
+                                    class="fab fa-github"></i></button>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-12 input-group flex-nowrap">
-                        <input id="input-value-preview" type="text" class="form-control" value='CALL ME <i class="fab fa-skype"></i>'>
-                        <div class="input-group-prepend">
-                            <input id="input-color-preview" class="jscolor {onFineChange:'setPreviewColor(this)'}"value="00A3E0">
-                        </div>
-                    </div>
-                    <div class="col-8">
+                     </div>
+                  </div>
+                  <div class="card-footer text-muted">
+                     <div id="colorpicker" data-color="#00A3E0">
+                        <!--<input type="text" class="form-control" style="width:auto"/>-->
+                     </div>
+                     <!--<div class="col-8">
                         <div class="input-group mt-3">
                             <select id="select-family-preview" class="custom-select" id="inputGroupSelect01">
                                 <option selected value="Bahnschrift">Bahnschrift</option>
@@ -78,67 +127,89 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Font Family</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-4">
+                        </div>
+                        <div class="col-4">
                         <form>
                             <div class="form-group">
                                 <label for="formControlRange" class="text-light">Font size</label>
-                                <input type="range" class="form-control-range"  min="18" max="100" step="1" value="81" id="input-size-preview">
+                                <input type="range" class="form-control-range" min="18" max="100" step="1"
+                                    value="81" id="input-size-preview">
                             </div>
                         </form>
-                    </div>
-                    <div class="col-6">
+                        </div>
+                        <div class="col-6">
                         <form>
                             <div class="form-group">
                                 <label for="formControlRange" class="text-light">Blur</label>
-                                <input type="range" class="form-control-range"  min="0" max="30" step="1" value="0" id="input-blur-preview">
+                                <input type="range" class="form-control-range" min="0" max="30" step="1" value="0"
+                                    id="input-blur-preview">
                             </div>
                         </form>
-                    </div>
-                    <div class="col-6">
+                        </div>
+                        <div class="col-6">
                         <form>
                             <div class="form-group">
                                 <label for="formControlRange" class="text-light">Delay</label>
-                                <input type="range" class="form-control-range"  min="1" max="10" step="0.5" value="2" id="input-delay-preview">
+                                <input type="range" class="form-control-range" min="1" max="10" step="0.5" value="2"
+                                    id="input-delay-preview">
                             </div>
                         </form>
-                    </div>
-                </div>
+                        </div>-->
+                  </div>
+               </div>
             </div>
             <div class="col-md-12 col-lg-6 mt-2">
-                <h3 class="font-weight-light text-light">Preview</h3>
-                <div id="text-preview" class="text-center neon"></div>
-            </div>
-        </div>
-        <hr class="bg-light">
-        <div class="row  mb-5">
-            <div class="col-md-12 col-lg-6 mt-2">
-                <h3 class="font-weight-light text-light">CSS 
-                    <button type="button" class="btn btn-light p-1 m-1">
-                        <i class="fas fa-copy copy-css p-2"></i>
-                    </button>
-                </h3>
-                <div id="code-css-preview"></div>
+               <div class="card mb-4">
+                  <h5 class="card-header">Preview</h5>
+                  <div class="card-body">
+                     <div class="card-text">
+                        <div id="text-preview" class="text-center neon"></div>
+                     </div>
+                  </div>
+               </div>
             </div>
             <div class="col-md-12 col-lg-6 mt-2">
-                <h3 class="font-weight-light text-light">HTML
-                    <button type="button" class="btn btn-light p-1 m-1">
-                        <i class="fas fa-copy copy-html p-2"></i>
-                    </button>
-                </h3>
-                <div id="code-html-preview"></div>
+               <div class="card mb-4">
+                  <h5 class="card-header">
+                     CSS 
+                     <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm copy-css"><i
+                           class="fa fa-copy"></i></button>
+                     </div>
+                  </h5>
+                  <div class="card-body unset-pg">
+                     <div class="card-text">
+                        <div id="code-css-preview"></div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</body>
-<style id="animationKeyframes"></style>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="./libs/codemirror/codemirror.js"></script>
-<script src="./libs/codemirror/modes/css.js"></script>
-<script src="./libs/codemirror/modes/xml.js"></script>
-<script src="./libs/jscolor.js"></script>
-<script src="./script.js"></script>
-
+            <div class="col-md-12 col-lg-6 mt-2">
+               <div class="card mb-4">
+                  <h5 class="card-header">
+                     HTML 
+                     <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm copy-html"><i
+                           class="fa fa-copy"></i></button>
+                     </div>
+                  </h5>
+                  <div class="card-body unset-pg">
+                     <div class="card-text">
+                        <div id="code-html-preview"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <style id="animationKeyframes"></style>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <script src="./libs/codemirror/codemirror.js"></script>
+   <script src="./libs/codemirror/modes/css.js"></script>
+   <script src="./libs/codemirror/modes/xml.js"></script>
+   <script src="./libs/colorpicker/js/bootstrap-colorpicker.js"></script>
+   <script src="./script.js"></script>
 </html>

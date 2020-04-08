@@ -4,8 +4,8 @@
    &#9749; Libraries:<br>
 <table>
    <tr><td>Bootstrap</td></tr>
-   <tr><td>Font Awsome</td></tr>
+   <tr><td>Font Awesome</td></tr>
    <tr><td>Codemirror</td></tr>
    <tr><td>JQuery</td></tr>
-   <tr><td>JScolor</td></tr>
+   <tr><td>Bootstrap Colorpicker</td></tr>
 </table>
