@@ -1,6 +1,7 @@
 // Global options
 let options = {
     value: 'CALL ME <i class="fab fa-skype"></i>',
+    valueEmpty: 'Text is empty &#9785;',
     color: '00A3E0',
     arrColor: [0, 163, 224],
     blur: 0,
@@ -13,19 +14,13 @@ let options = {
     from {
         text-shadow: 
           0 0 ${blur + 10}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 20}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur + 40}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 80}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 90}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur + 100}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
       }
       to {
         text-shadow: 
           0 0 ${blur + 5}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 10}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur + 20}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 40}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 45}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
           0 0 ${blur + 60}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
       }
 }`
@@ -62,21 +57,60 @@ let HTMLcode = CodeMirror(document.getElementById('code-html-preview'), {
 })
 HTMLcode.setSize("100%", 100)
 
-// Init preview values
-$('#text-preview').html(options.value)
-$('#text-preview').css({
-    'animation': `neonAnim ${options.delay}s alternate-reverse infinite`,
-    'color': `${options.color}`,
-    'font-family': options.fontFamily,
-    'font-size': options.fontSize + 'px'
-})
-$('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
+// inital default values
+$(document).ready(function () {
+    // preview
+    $('#text-preview').html(options.value)
+
+    // preview css
+    $('#text-preview').css({
+        'animation': `neonAnim ${options.delay}s alternate-reverse infinite`,
+        'color': `${options.color}`,
+        'font-family': options.fontFamily,
+        'font-size': options.fontSize + 'px'
+    })
+
+    // animation init
+    $('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
+
+    // text
+    $('#input-value-preview').val(options.value);
+
+    // font family
+    $('#select-family-preview').val("Bahnschrift");
+
+    // color
+    $('#colorpicker').val("#00A3E0");
+
+    $("#input-blur-preview").ionRangeSlider({
+        min: 0,
+        max: 30,
+        from: 5
+    });
+
+    $("#input-size-preview").ionRangeSlider({
+        min: 10,
+        max: 100,
+        from: 72
+    });
+
+    $("#input-delay-preview").ionRangeSlider({
+        min: 1,
+        max: 10,
+        step: 0.5,
+        from: 2
+    });
+});
 
 // EVENTS
 // Change text preview && HTML code
 $('#input-value-preview').keyup(event => {
     options.value = event.target.value
-    $('#text-preview').html(options.value)
+    if (options.value != '') {
+        $('#text-preview').html(options.value)
+    } else {
+        $('#text-preview').html(options.valueEmpty)
+    }
     HTMLcode.setValue(
         `<div class="neon">
     ${options.value}
@@ -85,8 +119,6 @@ $('#input-value-preview').keyup(event => {
 
 $(function () {
     $('#colorpicker').colorpicker({
-        inline: true,
-        container: true,
         format: "hex",
     }).on('colorpickerChange colorpickerCreate', function (e) {
 
@@ -198,8 +230,17 @@ let addIcon = (icon) => {
 </div>`)
 }
 
-// Copy code by button
+// Clear input value preview
+$('#clear-value-preview').click(() => {
+    $('#input-value-preview').val('').focus();
+    $('#text-preview').html(options.valueEmpty)
+    HTMLcode.setValue(
+        `<div class="neon">
+        ${options.value}
+    </div>`)
+})
 
+// Copy code by button
 let copyToClipboard = (text) => {
     let textarea = document.createElement("textarea");
     document.body.appendChild(textarea);
@@ -209,6 +250,7 @@ let copyToClipboard = (text) => {
     document.body.removeChild(textarea);
 }
 
+// clipboard events
 $('.copy-css').click(() => {
     copyToClipboard(CSScode.getValue())
 })

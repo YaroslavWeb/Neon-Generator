@@ -5,13 +5,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Neon Generator</title>
       <link rel="shortcut icon" href="./favicon.ico" type="image/png">
-      <link rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
-         integrity="sha256-m/h/cUDAhf6/iBRixTbuc8+Rg2cIETQtPcH9D3p2Kg0=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="./libs/font-awsome.min.css">
       <link rel="stylesheet" href="./libs/codemirror/codemirror.css">
       <link rel="stylesheet" href="./libs/codemirror/theme/darcula.css">
       <link rel="stylesheet" href="./libs/colorpicker/css/bootstrap-colorpicker.css">
+      <link rel="stylesheet" href="./libs/slider/css/ion.rangeSlider.css">
+      <link rel="stylesheet" href="./libs/slider/css/ion.rangeSlider.skin.css">
       <link rel="stylesheet" href="./style.css">
    </head>
    <body>
@@ -43,8 +43,8 @@
                               aria-controls="emoji" aria-selected="true">Emoji</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" id="fa-tab" data-toggle="tab" href="#fa" role="tab"
-                              aria-controls="fa" aria-selected="false">FontAwsome</a>
+                           <a class="nav-link" id="fa-tab" data-toggle="tab" href="#fa" role="tab" aria-controls="fa"
+                              aria-selected="false">FontAwesome</a>
                         </li>
                      </ul>
                   </div>
@@ -76,35 +76,31 @@
                            <div class="col-6">
                               <div class="row">
                                  <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fas fa-user-tie"></i></button>
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-user-tie"></i></button>
                                  </div>
                                  <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fas fa-sign-in-alt"></i></button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fas fa-battery-quarter"></i></button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="far fa-user-circle"></i></button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fas fa-envelope-square"></i></button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fas fa-phone-square-alt"></i></button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fab fa-html5"></i></button>
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-sign-in-alt"></i></button>
                                  </div>
                                  <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fab fa-skype"></i></button>
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-battery-quarter"></i></button>
                                  </div>
                                  <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i
-                                    class="fab fa-github"></i></button>
+                                    class="btn btn-light w-100 p-1 m-1"><i class="far fa-user-circle"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-envelope-square"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-phone-square-alt"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-html5"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-skype"></i></button>
+                                 </div>
+                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-github"></i></button>
                                  </div>
                               </div>
                            </div>
@@ -112,49 +108,62 @@
                      </div>
                   </div>
                   <div class="card-footer text-muted">
-                     <div id="colorpicker" data-color="#00A3E0">
-                        <!--<input type="text" class="form-control" style="width:auto"/>-->
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text">Text</span>
+                        </div>
+                        <input id="input-value-preview" type="text" class="form-control">
+                        <div class="input-group-append">
+                           <button type="button" id="clear-value-preview" class="input-group-text btn btn-light">
+                           <i class="fas fa-trash"></i>
+                           </button>
+                        </div>
                      </div>
-                     <!--<div class="col-8">
-                        <div class="input-group mt-3">
-                            <select id="select-family-preview" class="custom-select" id="inputGroupSelect01">
-                                <option selected value="Bahnschrift">Bahnschrift</option>
-                                <option value="Consolas">Consolas</option>
-                                <option value="Cursive">Cursive</option>
-                                <option value="Garamond">Garamond</option>
-                            </select>
-                            <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelect01">Font Family</label>
-                            </div>
+                     <div class="input-group mt-3 mb-3">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text">Color</span>
                         </div>
+                        <input id="colorpicker" type="text" class="form-control input-lg">
+                     </div>
+                     <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                           <label class="input-group-text" for="inputGroupSelect01">Fonts</label>
                         </div>
-                        <div class="col-4">
-                        <form>
-                            <div class="form-group">
-                                <label for="formControlRange" class="text-light">Font size</label>
-                                <input type="range" class="form-control-range" min="18" max="100" step="1"
-                                    value="81" id="input-size-preview">
-                            </div>
-                        </form>
+                        <select class="custom-select" id="select-family-preview">
+                           <option selected value="Bahnschrift">Bahnschrift</option>
+                           <option value="Consolas">Consolas</option>
+                           <option value="Cursive">Cursive</option>
+                           <option value="Garamond">Garamond</option>
+                        </select>
+                     </div>
+
+                     <form class="form-horizontal">
+                        <div class="form-group row">
+                           <label for="input-size-preview" class="col-sm-2 control-label">Font size</label>
+                           <div class="col-sm-10">
+                              <input type="text" id="input-size-preview">
+                           </div>
                         </div>
-                        <div class="col-6">
-                        <form>
-                            <div class="form-group">
-                                <label for="formControlRange" class="text-light">Blur</label>
-                                <input type="range" class="form-control-range" min="0" max="30" step="1" value="0"
-                                    id="input-blur-preview">
-                            </div>
-                        </form>
+                     </form>
+
+                     <form class="form-horizontal">
+                        <div class="form-group row">
+                           <label for="input-blur-preview" class="col-sm-2 control-label">Blur</label>
+                           <div class="col-sm-10">
+                              <input type="text" id="input-blur-preview">
+                           </div>
                         </div>
-                        <div class="col-6">
-                        <form>
-                            <div class="form-group">
-                                <label for="formControlRange" class="text-light">Delay</label>
-                                <input type="range" class="form-control-range" min="1" max="10" step="0.5" value="2"
-                                    id="input-delay-preview">
-                            </div>
-                        </form>
-                        </div>-->
+                     </form>
+
+                     <form class="form-horizontal">
+                        <div class="form-group row">
+                           <label for="input-delay-preview" class="col-sm-2 control-label">Delay</label>
+                           <div class="col-sm-10">
+                              <input type="text" id="input-delay-preview">
+                           </div>
+                        </div>
+                     </form>
+                     
                   </div>
                </div>
             </div>
@@ -171,10 +180,9 @@
             <div class="col-md-12 col-lg-6 mt-2">
                <div class="card mb-4">
                   <h5 class="card-header">
-                     CSS 
+                     CSS
                      <div class="pull-right">
-                        <button type="button" class="btn btn-primary btn-sm copy-css"><i
-                           class="fa fa-copy"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm copy-css"><i class="fa fa-copy"></i></button>
                      </div>
                   </h5>
                   <div class="card-body unset-pg">
@@ -187,10 +195,9 @@
             <div class="col-md-12 col-lg-6 mt-2">
                <div class="card mb-4">
                   <h5 class="card-header">
-                     HTML 
+                     HTML
                      <div class="pull-right">
-                        <button type="button" class="btn btn-primary btn-sm copy-html"><i
-                           class="fa fa-copy"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm copy-html"><i class="fa fa-copy"></i></button>
                      </div>
                   </h5>
                   <div class="card-body unset-pg">
@@ -211,5 +218,6 @@
    <script src="./libs/codemirror/modes/css.js"></script>
    <script src="./libs/codemirror/modes/xml.js"></script>
    <script src="./libs/colorpicker/js/bootstrap-colorpicker.js"></script>
+   <script src="./libs/slider/js/ion.rangeSlider.min.js"></script>
    <script src="./script.js"></script>
 </html>

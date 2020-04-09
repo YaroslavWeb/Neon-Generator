@@ -8,4 +8,5 @@
    <tr><td>Codemirror</td></tr>
    <tr><td>JQuery</td></tr>
    <tr><td>Bootstrap Colorpicker</td></tr>
+   <tr><td>Ion Range Slider Bootstrap</td></tr>
 </table>
