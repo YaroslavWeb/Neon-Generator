@@ -1,9 +1,11 @@
 // Global options
 let options = {
     value: 'CALL ME <i class="fab fa-skype"></i>',
-    valueEmpty: 'Text is empty &#9785;',
+    valueEmpty: 'Text is empty <i class="fa fa-exclamation-circle"></i>',
     color: '00A3E0',
+    colorEmpty: 'F03A17',
     arrColor: [0, 163, 224],
+    arrColorErr: [240, 58, 23],
     blur: 0,
     delay: 2,
     fontFamily: 'Bahnschrift',
@@ -24,7 +26,7 @@ let options = {
           0 0 ${blur + 60}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
       }
 }`
-        )
+        );
     }
 }
 // Codemirror init
@@ -41,7 +43,7 @@ let CSScode = CodeMirror(document.getElementById('code-css-preview'), {
     font-size: ${options.fontSize}px;
 }
 ${options.animation(options.arrColor, options.blur)}`
-})
+});
 CSScode.setSize("100%", 400)
 
 let HTMLcode = CodeMirror(document.getElementById('code-html-preview'), {
@@ -53,14 +55,14 @@ let HTMLcode = CodeMirror(document.getElementById('code-html-preview'), {
     value:
         `<div class="neon">
     ${options.value}
-</div>`,
-})
+</div>`
+});
 HTMLcode.setSize("100%", 100)
 
 // inital default values
 $(document).ready(function () {
     // preview
-    $('#text-preview').html(options.value)
+    $('#text-preview').html(options.value);
 
     // preview css
     $('#text-preview').css({
@@ -68,7 +70,7 @@ $(document).ready(function () {
         'color': `${options.color}`,
         'font-family': options.fontFamily,
         'font-size': options.fontSize + 'px'
-    })
+    });
 
     // animation init
     $('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
@@ -106,58 +108,67 @@ $(document).ready(function () {
 // Change text preview && HTML code
 $('#input-value-preview').keyup(event => {
     options.value = event.target.value
-    if (options.value != '') {
+    if (options.value.replace(/\s/g, '') != '') {
         $('#text-preview').html(options.value)
+        HTMLcode.setValue(
+            `<div class="neon">
+    ${options.value}
+</div>`);
     } else {
         $('#text-preview').html(options.valueEmpty)
+        HTMLcode.setValue(
+            `<div class="neon">
+    ${options.valueEmpty}
+</div>`);
+        $('#text-preview').css({
+            'color': `#${options.colorEmpty}`
+        });
+
+        $('#animationKeyframes').text(options.animation(options.arrColorErr, options.blur));
     }
-    HTMLcode.setValue(
-        `<div class="neon">
-    ${options.value}
-</div>`)
 })
 
-$(function () {
-    $('#colorpicker').colorpicker({
-        format: "hex",
-    }).on('colorpickerChange colorpickerCreate', function (e) {
+// colorpicker
+$('#colorpicker').colorpicker({
+    format: "hex",
+}).on('colorpickerChange colorpickerCreate', function (e) {
 
-        console.log(e)
+    console.log(e);
 
-        options.color = e.color.original.color
+    options.color = e.color.original.color;
 
-        options.arrColor = [
-            Math.round(e.color['_color'].color[0]),
-            Math.round(e.color['_color'].color[1]),
-            Math.round(e.color['_color'].color[2])
-        ]
+    options.arrColor = [
+        Math.round(e.color['_color'].color[0]),
+        Math.round(e.color['_color'].color[1]),
+        Math.round(e.color['_color'].color[2])
+    ];
 
-        console.log("Parse rgba: " + options.arrColor)
-        console.log("Parse HEX: " + options.color)
+    console.log("Parse rgba: " + options.arrColor);
+    console.log("Parse HEX: " + options.color);
 
-        $('#text-preview').css({
-            'color': `${options.color}`
-        })
-        $('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
-        CSScode.setValue(
-            `.neon {
+    $('#text-preview').css({
+        'color': `${options.color}`
+    });
+
+    $('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
+    CSScode.setValue(
+        `.neon {
         animation: neonAnim 2s alternate-reverse infinite;
         color: ${options.color};
         font-family: ${options.fontFamily};
         font-size: ${options.fontSize}px;
     }
-    ${options.animation(options.arrColor, options.blur)}`
-        )
-
-    });
+    ${options.animation(options.arrColor, options.blur)}`);
 });
 
 // Change font-family && CSS code
 $('#select-family-preview').change((event) => {
-    options.fontFamily = event.target.value
+    options.fontFamily = event.target.value;
+
     $('#text-preview').css({
         'font-family': options.fontFamily,
-    })
+    });
+
     CSScode.setValue(
         `.neon {
     animation: neonAnim 2s alternate-reverse infinite;
@@ -165,9 +176,8 @@ $('#select-family-preview').change((event) => {
     font-family: ${options.fontFamily};
     font-size: ${options.fontSize}px;
 }
-${options.animation(options.arrColor, options.blur)}`
-    )
-})
+${options.animation(options.arrColor, options.blur)}`);
+});
 
 // Change font-size && CSS code
 $('#input-size-preview').change((event) => {
@@ -176,6 +186,7 @@ $('#input-size-preview').change((event) => {
     $('#text-preview').css({
         'font-size': options.fontSize + 'px'
     })
+
     CSScode.setValue(
         `.neon {
     animation: neonAnim 2s alternate-reverse infinite;
@@ -183,9 +194,8 @@ $('#input-size-preview').change((event) => {
     font-family: ${options.fontFamily};
     font-size: ${options.fontSize}px;
 }
-${options.animation(options.arrColor, options.blur)}`
-    )
-})
+${options.animation(options.arrColor, options.blur)}`);
+});
 
 // Change blur && CSS code
 $('#input-blur-preview').change((event) => {
@@ -198,16 +208,17 @@ $('#input-blur-preview').change((event) => {
     font-family: ${options.fontFamily};
     font-size: ${options.fontSize}px;
 }
-${options.animation(options.arrColor, options.blur)}`
-    )
-})
+${options.animation(options.arrColor, options.blur)}`);
+});
 
 // Change delay && CSS code
 $('#input-delay-preview').change((event) => {
-    options.delay = Number(event.target.value)
+    options.delay = Number(event.target.value);
+
     $('#text-preview').css({
         'animation': `neonAnim ${options.delay}s alternate-reverse infinite`
-    })
+    });
+
     CSScode.setValue(
         `.neon {
     animation: neonAnim ${options.delay}s alternate-reverse infinite;
@@ -215,9 +226,8 @@ $('#input-delay-preview').change((event) => {
     font-family: ${options.fontFamily};
     font-size: ${options.fontSize}px;
 }
-${options.animation(options.arrColor, options.blur)}`
-    )
-})
+${options.animation(options.arrColor, options.blur)}`);
+});
 
 // Add icon && HTML code
 let addIcon = (icon) => {
@@ -227,18 +237,26 @@ let addIcon = (icon) => {
     HTMLcode.setValue(
         `<div class="neon">
     ${options.value}
-</div>`)
+</div>`);
 }
 
 // Clear input value preview
 $('#clear-value-preview').click(() => {
     $('#input-value-preview').val('').focus();
-    $('#text-preview').html(options.valueEmpty)
+
+    $('#text-preview').html(options.valueEmpty);
+
     HTMLcode.setValue(
         `<div class="neon">
-        ${options.value}
-    </div>`)
-})
+    ${options.valueEmpty}
+</div>`);
+
+    $('#text-preview').css({
+        'color': `#${options.colorEmpty}`
+    });
+
+    $('#animationKeyframes').text(options.animation(options.arrColorErr, options.blur));
+});
 
 // Copy code by button
 let copyToClipboard = (text) => {
@@ -252,8 +270,9 @@ let copyToClipboard = (text) => {
 
 // clipboard events
 $('.copy-css').click(() => {
-    copyToClipboard(CSScode.getValue())
-})
+    copyToClipboard(CSScode.getValue());
+});
+
 $('.copy-html').click(() => {
-    copyToClipboard(HTMLcode.getValue())
-})
+    copyToClipboard(HTMLcode.getValue());
+});

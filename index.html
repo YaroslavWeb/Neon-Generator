@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="./libs/slider/css/ion.rangeSlider.css">
       <link rel="stylesheet" href="./libs/slider/css/ion.rangeSlider.skin.css">
       <link rel="stylesheet" href="./style.css">
+      <style id="animationKeyframes"></style>
    </head>
    <body>
       <div class="jumbotron jumbotron-fluid">
@@ -34,6 +35,16 @@
       </a>
       <div class="container">
          <div class="row">
+            <div class="col-md-12 mt-2">
+               <div class="card mb-4">
+                  <div class="card-header">Preview</div>
+                  <div class="card-body">
+                     <div class="card-text">
+                        <div id="text-preview" class="text-center neon"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <div class="col-md-12 col-lg-6 mt-2">
                <div class="card mb-4">
                   <div class="card-header">
@@ -48,60 +59,58 @@
                         </li>
                      </ul>
                   </div>
-                  <div class="card-body">
-                     <div class="card-text">
+                  <div class="card-body tab-content">
+                     <div class="tab-pane fade show active" id="emoji" role="tabpanel" aria-labelledby="emoji-tab">
                         <div class="row">
-                           <div class="col-6">
-                              <div class="row">
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#129409;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#9940;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#9996;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#10004;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#128169;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#10084;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#128514;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#128519;</button></div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1">&#128525;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#129409;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#9940;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#9996;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#10004;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#128169;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#10084;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#128514;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#128519;</button></div>
+                           <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                              class="btn btn-light w-100 p-1 m-1">&#128525;</button></div>
+                        </div>
+                     </div>
+                     <div class="tab-pane fade" id="fa" role="tabpanel" aria-labelledby="fa-tab">
+                        <div>
+                           <div class="row">
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fas fa-user-tie"></i></button>
                               </div>
-                           </div>
-                           <div class="col-6">
-                              <div class="row">
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-user-tie"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-sign-in-alt"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-battery-quarter"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="far fa-user-circle"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-envelope-square"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fas fa-phone-square-alt"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-html5"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-skype"></i></button>
-                                 </div>
-                                 <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
-                                    class="btn btn-light w-100 p-1 m-1"><i class="fab fa-github"></i></button>
-                                 </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fas fa-sign-in-alt"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fas fa-battery-quarter"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="far fa-user-circle"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fas fa-envelope-square"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fas fa-phone-square-alt"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fab fa-html5"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fab fa-skype"></i></button>
+                              </div>
+                              <div class="col-4"><button onclick="addIcon(this.innerHTML)" type="button"
+                                 class="btn btn-light w-100 p-1 m-1"><i class="fab fa-github"></i></button>
                               </div>
                            </div>
                         </div>
@@ -112,7 +121,7 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text">Text</span>
                         </div>
-                        <input id="input-value-preview" type="text" class="form-control">
+                        <textarea id="input-value-preview" type="text" class="form-control" style="height: 55px;"></textarea>
                         <div class="input-group-append">
                            <button type="button" id="clear-value-preview" class="input-group-text btn btn-light">
                            <i class="fas fa-trash"></i>
@@ -136,7 +145,6 @@
                            <option value="Garamond">Garamond</option>
                         </select>
                      </div>
-
                      <form class="form-horizontal">
                         <div class="form-group row">
                            <label for="input-size-preview" class="col-sm-2 control-label">Font size</label>
@@ -145,7 +153,6 @@
                            </div>
                         </div>
                      </form>
-
                      <form class="form-horizontal">
                         <div class="form-group row">
                            <label for="input-blur-preview" class="col-sm-2 control-label">Blur</label>
@@ -154,7 +161,6 @@
                            </div>
                         </div>
                      </form>
-
                      <form class="form-horizontal">
                         <div class="form-group row">
                            <label for="input-delay-preview" class="col-sm-2 control-label">Delay</label>
@@ -163,43 +169,30 @@
                            </div>
                         </div>
                      </form>
-                     
                   </div>
                </div>
             </div>
-            <div class="col-md-12 col-lg-6 mt-2">
+            <div class="col-lg-6 mt-2">
                <div class="card mb-4">
-                  <h5 class="card-header">Preview</h5>
-                  <div class="card-body">
-                     <div class="card-text">
-                        <div id="text-preview" class="text-center neon"></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-12 col-lg-6 mt-2">
-               <div class="card mb-4">
-                  <h5 class="card-header">
+                  <div class="card-header">
                      CSS
                      <div class="pull-right">
                         <button type="button" class="btn btn-primary btn-sm copy-css"><i class="fa fa-copy"></i></button>
                      </div>
-                  </h5>
+                  </div>
                   <div class="card-body unset-pg">
                      <div class="card-text">
                         <div id="code-css-preview"></div>
                      </div>
                   </div>
                </div>
-            </div>
-            <div class="col-md-12 col-lg-6 mt-2">
                <div class="card mb-4">
-                  <h5 class="card-header">
+                  <div class="card-header">
                      HTML
                      <div class="pull-right">
                         <button type="button" class="btn btn-primary btn-sm copy-html"><i class="fa fa-copy"></i></button>
                      </div>
-                  </h5>
+                  </div>
                   <div class="card-body unset-pg">
                      <div class="card-text">
                         <div id="code-html-preview"></div>
@@ -209,8 +202,8 @@
             </div>
          </div>
       </div>
+      </div>
    </body>
-   <style id="animationKeyframes"></style>
    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
