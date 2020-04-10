@@ -1,42 +1,92 @@
 // Global options
 let options = {
-    value: 'CALL ME <i class="fab fa-skype"></i>',
-    valueEmpty: 'Text is empty <i class="fa fa-exclamation-circle"></i>',
-    color: '00A3E0',
-    colorEmpty: 'F03A17',
-    arrColor: [0, 163, 224],
-    arrColorErr: [240, 58, 23],
+    value: 'NEON TEXT &#128561;',
+    valueEmpty: '<img src="./libs/cat.gif" class="img-fluid">',
+    color: '#007BFF',
+    arrColor: [211, 100, 50],
     blur: 0,
     delay: 2,
     fontFamily: 'Bahnschrift',
-    fontSize: 81,
+    fontSize: 72,
+    emoji: [
+        "&#129409;",
+        "&#9940;",
+        "&#9996;",
+        "&#128526;",
+        "&#128169;",
+        "&#10084;",
+        "&#128514;",
+        "&#128519;",
+        "&#128525;",
+        "&#128545;",
+        "&#127881;",
+        "&#128561;",
+        "&#128518;",
+        "&#128567;",
+        "&#127925;",
+        "&#11088;",
+        "&#127774;",
+        "&#128049;",
+        "&#127877;",
+        "&#127767;",
+        "&#129303;",
+        "&#128076;",
+        "&#128064;",
+        "&#128571;"
+    ],
+    fa: [
+        "far fa-user-circle",
+        "fas fa-user-tie",
+        "fas fa-sign-in-alt",
+        "fas fa-battery-quarter",
+        "fas fa-envelope-square",
+        "fas fa-phone-square-alt",
+        "fab fa-html5",
+        "fab fa-skype",
+        "fab fa-github",
+        "fab fa-youtube",
+        "fab fa-vk",
+        "fab fa-instagram",
+        "fab fa-google",
+        "fab fa-gitlab",
+        "fa fa-bell",
+        "fa fa-bug",
+        "fa fa-eye",
+        "fa fa-gamepad",
+        "fa fa-home",
+        "fa fa-key",
+        "fa fa-taxi",
+        "fa fa-tv",
+        "fa fa-wifi",
+        "fa fa-bus",
+    ],
     animation: (arrColor, blur) => {
         return (
             `@keyframes neonAnim {
     from {
-        text-shadow: 
-          0 0 ${blur + 10}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 40}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 100}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
+        text-shadow:
+          0 0 ${blur + 10}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%),
+          0 0 ${blur + 40}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%),
+          0 0 ${blur + 100}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%);
       }
       to {
-        text-shadow: 
-          0 0 ${blur + 5}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 20}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5),
-          0 0 ${blur + 60}px rgba(${arrColor[0]},${arrColor[1]},${arrColor[2]},.5);
+        text-shadow:
+          0 0 ${blur + 5}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%),
+          0 0 ${blur + 20}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%),
+          0 0 ${blur + 60}px hsl(${arrColor[0]}, ${arrColor[1]}%, ${arrColor[2]}%);
       }
 }`
         );
     }
 }
+
 // Codemirror init
 let CSScode = CodeMirror(document.getElementById('code-css-preview'), {
     theme: "default",
     mode: "css",
     lineNumbers: true,
     readOnly: true,
-    value:
-        `.neon {
+    value: `.neon {
     animation: neonAnim 2s alternate-reverse infinite;
     color: ${options.color};
     font-family: ${options.fontFamily};
@@ -44,7 +94,7 @@ let CSScode = CodeMirror(document.getElementById('code-css-preview'), {
 }
 ${options.animation(options.arrColor, options.blur)}`
 });
-CSScode.setSize("100%", 400)
+CSScode.setSize("100%", 400);
 
 let HTMLcode = CodeMirror(document.getElementById('code-html-preview'), {
     theme: "default",
@@ -52,15 +102,62 @@ let HTMLcode = CodeMirror(document.getElementById('code-html-preview'), {
     htmlMode: true,
     lineNumbers: true,
     readOnly: true,
-    value:
-        `<div class="neon">
+    value: `<div class="neon">
     ${options.value}
 </div>`
 });
-HTMLcode.setSize("100%", 100)
+HTMLcode.setSize("100%", 100);
+
+// darkmode switcher
+const darkSwitch = document.getElementById('darkSwitch');
+$(window).on('load', () => {
+    if (darkSwitch) {
+        initTheme();
+        $(darkSwitch).on('change', () => {
+            resetTheme();
+        });
+    }
+});
+
+function initTheme() {
+    const darkThemeSelected =
+        // dark === null, default !== null
+        localStorage.getItem('darkSwitch') === null ||
+        localStorage.getItem('darkSwitch') === 'dark';
+    if (darkThemeSelected) {
+        darkSwitch.checked = true;
+    } else {
+        darkSwitch.checked = false;
+    }
+    resetTheme();
+}
+
+function resetTheme() {
+    if (darkSwitch.checked) {
+        HTMLcode.setOption("theme", "darcula");
+        CSScode.setOption("theme", "darcula");
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('darkSwitch', 'dark');
+    } else {
+        HTMLcode.setOption("theme", "default");
+        CSScode.setOption("theme", "default");
+        document.body.setAttribute('data-theme', 'default');
+        localStorage.setItem('darkSwitch', 'default');
+    }
+}
 
 // inital default values
-$(document).ready(function () {
+$(document).ready(function ($) {
+    // emoji list
+    $.each(options.emoji, function (i, r) {
+        $("#emoji-row").append('<div class="col-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)">' + r + '</button></div>');
+    });
+
+    // fa list
+    $.each(options.fa, function (i, r) {
+        $("#fa-row").append('<div class="col-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)"><i class="' + r + '"></i></button></div>');
+    });
+
     // preview
     $('#text-preview').html(options.value);
 
@@ -72,16 +169,16 @@ $(document).ready(function () {
         'font-size': options.fontSize + 'px'
     });
 
-    // animation init
+    // animation
     $('#animationKeyframes').text(options.animation(options.arrColor, options.blur))
 
     // text
     $('#input-value-preview').val(options.value);
 
-    // font family
+    // font-family
     $('#select-family-preview').val("Bahnschrift");
 
-    // color
+    // colorpicker values
     $('#colorpicker').val("#00A3E0");
 
     $("#input-blur-preview").ionRangeSlider({
@@ -102,6 +199,9 @@ $(document).ready(function () {
         step: 0.5,
         from: 2
     });
+
+    // preloader remove
+    $('#preloader').fadeOut();
 });
 
 // EVENTS
@@ -121,20 +221,18 @@ $('#input-value-preview').keyup(event => {
     ${options.valueEmpty}
 </div>`);
         $('#text-preview').css({
-            'color': `#${options.colorEmpty}`
+            'color': `${options.color}`
         });
 
-        $('#animationKeyframes').text(options.animation(options.arrColorErr, options.blur));
+        $('#animationKeyframes').text(options.animation(options.arrColor, options.blur));
+        console.log(options.arrColor)
     }
 })
 
 // colorpicker
 $('#colorpicker').colorpicker({
-    format: "hex",
-}).on('colorpickerChange colorpickerCreate', function (e) {
-
-    console.log(e);
-
+    format: "hex"
+}).on('colorpickerChange', function (e) {
     options.color = e.color.original.color;
 
     options.arrColor = [
@@ -142,9 +240,6 @@ $('#colorpicker').colorpicker({
         Math.round(e.color['_color'].color[1]),
         Math.round(e.color['_color'].color[2])
     ];
-
-    console.log("Parse rgba: " + options.arrColor);
-    console.log("Parse HEX: " + options.color);
 
     $('#text-preview').css({
         'color': `${options.color}`
@@ -242,6 +337,8 @@ let addIcon = (icon) => {
 
 // Clear input value preview
 $('#clear-value-preview').click(() => {
+    options.value = '';
+
     $('#input-value-preview').val('').focus();
 
     $('#text-preview').html(options.valueEmpty);
@@ -251,11 +348,7 @@ $('#clear-value-preview').click(() => {
     ${options.valueEmpty}
 </div>`);
 
-    $('#text-preview').css({
-        'color': `#${options.colorEmpty}`
-    });
-
-    $('#animationKeyframes').text(options.animation(options.arrColorErr, options.blur));
+    $('#animationKeyframes').text(options.animation(options.arrColor, options.blur));
 });
 
 // Copy code by button
