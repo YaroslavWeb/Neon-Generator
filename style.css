@@ -45,8 +45,15 @@
 	margin: unset;
 }
 
-.copy-css, .copy-html {
-	padding: 3px 8px;
+.row-grid {
+	align-items: center;
+	display: grid;
+}
+
+@media (max-width: 990px) {
+	.mt-lg {
+		margin-top: 1.5rem;
+	}
 }
 
 /* scrollbar */
@@ -426,4 +433,8 @@
 	background-color: #333 !important;
 	border-color: #303030 !important;
 	color: #fff !important;
+}
+
+[data-theme="dark"] button:hover {
+	background-color: #222 !important;
 }
