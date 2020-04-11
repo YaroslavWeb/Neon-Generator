@@ -150,12 +150,12 @@ function resetTheme() {
 $(document).ready(function ($) {
     // emoji list
     $.each(options.emoji, function (i, r) {
-        $("#emoji-row").append('<div class="col-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)">' + r + '</button></div>');
+        $("#emoji-row").append('<div class="col-3 col-sm-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)">' + r + '</button></div>');
     });
 
     // fa list
     $.each(options.fa, function (i, r) {
-        $("#fa-row").append('<div class="col-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)"><i class="' + r + '"></i></button></div>');
+        $("#fa-row").append('<div class="col-3 col-sm-2 mt-2"><button type="button" class="btn btn-sm btn-light w-100" onclick="addIcon(this.innerHTML)"><i class="' + r + '"></i></button></div>');
     });
 
     // preview
