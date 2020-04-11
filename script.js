@@ -6,7 +6,7 @@ let options = {
     arrColor: [211, 100, 50],
     blur: 0,
     delay: 2,
-    fontFamily: 'Bahnschrift',
+    fontFamily: 'Cursive',
     fontSize: 72,
     emoji: [
         "&#129409;",
@@ -176,10 +176,7 @@ $(document).ready(function ($) {
     $('#input-value-preview').val(options.value);
 
     // font-family
-    $('#select-family-preview').val("Bahnschrift");
-
-    // colorpicker values
-    $('#colorpicker').val("#00A3E0");
+    $('#select-family-preview').val(options.fontFamily);
 
     $("#input-blur-preview").ionRangeSlider({
         min: 0,
