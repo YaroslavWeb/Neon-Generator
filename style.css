@@ -133,8 +133,7 @@
 
 .custom-control-input:checked~.custom-control-label::before {
 	color: #fff;
-	border-color: #375a7f;
-	background-color: #375a7f;
+	border-color: #444;
 }
 
 .custom-control-input:focus~.custom-control-label::before {
@@ -147,9 +146,7 @@
 }
 
 .custom-control-input:not(:disabled):active~.custom-control-label::before {
-	color: #fff;
-	background-color: #97b3d2;
-	border-color: #97b3d2;
+	background-color: #e2e6ea;
 }
 
 .custom-control-input[disabled]~.custom-control-label, .custom-control-input:disabled~.custom-control-label {
