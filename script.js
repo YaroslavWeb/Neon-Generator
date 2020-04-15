@@ -230,8 +230,8 @@ $('#input-value-preview').keyup(event => {
 $('#colorpicker').colorpicker({
     format: "hex"
 }).on('colorpickerChange', e => {
-    options.color = e.color.original.color;
-    let ArrRGB = options.color.toRgbString().match(/\d+/g)
+    options.color = e.color;
+    let ArrRGB = e.color.toRgbString().match(/\d+/g)
     options.arrColor = [
         Math.round(ArrRGB[0]),
         Math.round(ArrRGB[1]),
